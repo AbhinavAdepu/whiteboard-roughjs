@@ -117,6 +117,22 @@ const App = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     const roughCanvas = rough.canvas(canvas);
+    if (!!("ontouchstart" in window)) {
+      function touchstart(event) {
+        handleMouseDown(event.touches[0]);
+      }
+      function touchmove(event) {
+        handleMouseMove(event.touches[0]);
+        event.preventDefault();
+      }
+      function touchend(event) {
+        handleMouseUp(event.changedTouches[0]);
+      }
+
+      canvas.addEventListener("touchstart", touchstart, false);
+      canvas.addEventListener("touchmove", touchmove, false);
+      canvas.addEventListener("touchend", touchend, false);
+    }
 
     elements.forEach(({ roughElement }) => roughCanvas.draw(roughElement));
   }, [elements]);
@@ -158,8 +174,8 @@ const App = () => {
     const { clientX, clientY } = event;
 
     if (tool === "selection") {
-      const clientX = !!("ontouchstart" in window) ? event.touches[0].pageX : clientX;
-      const clientY = !!("ontouchstart" in window) ? event.touches[0].pageY : clientY;
+      const clientX = clientX;
+      const clientY = clientY;
       const element = getElementAtPosition(clientX, clientY, elements);
       event.target.style.cursor = element ? cursorForPosition(element.position) : "default";
     }
@@ -229,9 +245,6 @@ const App = () => {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchMove={handleMouseMove}
-        onTouchEnd={handleMouseUp}
       >
         Canvas
       </canvas>
