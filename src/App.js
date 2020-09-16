@@ -158,8 +158,8 @@ const App = () => {
     const { clientX, clientY } = event;
 
     if (tool === "selection") {
-      const clientX = !!("ontouchstart" in window) ? event.touches[0].clientX : clientX;
-      const clientY = !!("ontouchstart" in window) ? event.touches[0].clientY : clientY;
+      const clientX = !!("ontouchstart" in window) ? event.touches[0].pageX : clientX;
+      const clientY = !!("ontouchstart" in window) ? event.touches[0].pageY : clientY;
       const element = getElementAtPosition(clientX, clientY, elements);
       event.target.style.cursor = element ? cursorForPosition(element.position) : "default";
     }
