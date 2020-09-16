@@ -109,6 +109,7 @@ const App = () => {
   const [elements, setElements] = useState([]);
   const [action, setAction] = useState("none");
   const [tool, setTool] = useState("line");
+  const [isIdle, setIdle] = useState(true);
   const [selectedElement, setSelectedElement] = useState(null);
 
   useLayoutEffect(() => {
@@ -147,6 +148,7 @@ const App = () => {
 
   const handleMouseDown = event => {
     const { clientX, clientY } = event;
+    setIdle(false);
     if (tool === "selection") {
       const element = getElementAtPosition(clientX, clientY, elements);
       if (element) {
@@ -171,6 +173,7 @@ const App = () => {
   };
 
   const handleMouseMove = event => {
+    if (isIdle) return;
     const { clientX, clientY } = event;
 
     if (tool === "selection") {
@@ -199,6 +202,7 @@ const App = () => {
   };
 
   const handleMouseUp = () => {
+    if (isIdle) return;
     const index = selectedElement.id;
     const { id, type } = elements[index];
     if (action === "drawing" || action === "resizing") {
