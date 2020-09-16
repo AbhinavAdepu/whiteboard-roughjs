@@ -133,6 +133,38 @@ const App = () => {
       canvas.addEventListener("touchstart", touchstart, false);
       canvas.addEventListener("touchmove", touchmove, false);
       canvas.addEventListener("touchend", touchend, false);
+      // Prevent scrolling when touching the canvas
+      document.body.addEventListener(
+        "touchstart",
+        function(e) {
+          if (e.target == canvas) {
+            e.preventDefault();
+          }
+        },
+        false
+      );
+      document.body.addEventListener(
+        "touchend",
+        function(e) {
+          if (e.target == canvas) {
+            e.preventDefault();
+          }
+        },
+        false
+      );
+      document.body.addEventListener(
+        "touchmove",
+        function(e) {
+          if (e.target == canvas) {
+            e.preventDefault();
+          }
+        },
+        false
+      );
+    } else {
+      canvas.addEventListener("mousedown", handleMouseDown, false);
+      canvas.addEventListener("mousemove", handleMouseMove, false);
+      canvas.addEventListener("mouseup", handleMouseUp, false);
     }
 
     elements.forEach(({ roughElement }) => roughCanvas.draw(roughElement));
@@ -242,14 +274,7 @@ const App = () => {
         <input type="radio" id="arc" checked={tool === "arc"} onChange={() => setTool("arc")} />
         <label htmlFor="arc">arc</label>
       </div>
-      <canvas
-        id="canvas"
-        width={window.innerWidth}
-        height={window.innerHeight}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-      >
+      <canvas id="canvas" width={window.innerWidth} height={window.innerHeight}>
         Canvas
       </canvas>
     </div>
