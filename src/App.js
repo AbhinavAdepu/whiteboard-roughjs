@@ -273,6 +273,21 @@ const App = () => {
         <label htmlFor="circle">Circle</label>
         <input type="radio" id="arc" checked={tool === "arc"} onChange={() => setTool("arc")} />
         <label htmlFor="arc">arc</label>
+        <button
+          onClick={() => {
+            console.log(document.getElementById("canvas").toDataURL());
+          }}
+        >
+          Save
+        </button>
+        <button
+          onClick={() => {
+            console.log(document.getElementById("canvas").width);
+            document.getElementById("canvas").width = document.getElementById("canvas").width;
+          }}
+        >
+          Clear
+        </button>
       </div>
       <canvas id="canvas" width={window.innerWidth} height={window.innerHeight}>
         Canvas
