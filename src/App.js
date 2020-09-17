@@ -2,41 +2,83 @@ import React, { useLayoutEffect, useState } from "react";
 import { fabric } from "fabric";
 
 const App = () => {
+  var canvas;
   const [elements, setElements] = useState([]);
   const [action, setAction] = useState("none");
-  const [tool, setTool] = useState("rectangle");
+  const [tool, setTool] = useState("circle");
   const [isIdle, setIdle] = useState(true);
+  const [strokeColor, setStrokeColor] = useState("#000");
   const [selectedElement, setSelectedElement] = useState(null);
 
-  useLayoutEffect(() => {
-    var canvas = new fabric.Canvas("canvas", { selection: false });
+  // Define the URL where your background image is located
+  const [imageUrl, setImageUrl] = useState(
+    "https://www.cavalierart.com.au/wp-content/uploads/2009/05/p_paper_graph2.jpg"
+  );
 
-    var circle, rect, isDown, origX, origY;
+  useLayoutEffect(() => {
+    canvas = new fabric.Canvas("canvas", { selection: false });
+
+    /* // Define
+    canvas.setBackgroundImage(imageUrl, canvas.renderAll.bind(canvas), {
+      // Optionally add an opacity lvl to the image
+      backgroundImageOpacity: 0.5,
+      // should the image be resized to fit the container?
+      backgroundImageStretch: false,
+      width: canvas.getWidth(),
+      height: canvas.getHeight(),
+      originX: "left",
+      originY: "top"
+    });
+    canvas.renderAll(); */
+    var circle, rect, isDown, origX, origY, triangle, line;
 
     canvas.on("mouse:down", function(o) {
       isDown = true;
       var pointer = canvas.getPointer(o.e);
       origX = pointer.x;
       origY = pointer.y;
+
+      var points = [pointer.x, pointer.y, pointer.x, pointer.y];
       rect = new fabric.Rect({
         left: origX,
         top: origY,
         fill: false,
-        stroke: "red"
+        stroke: strokeColor
       });
       canvas.add(rect);
       circle = new fabric.Circle({
         left: pointer.x,
         top: pointer.y,
-        radius: 1,
+        radius: 0,
         strokeWidth: 1,
-        stroke: "red",
+        stroke: strokeColor,
         selectable: false,
         originX: "center",
         originY: "center",
         fill: false
       });
       canvas.add(circle);
+
+      triangle = new fabric.Triangle({
+        left: pointer.x,
+        top: pointer.y,
+        strokeWidth: 1,
+        width: 0,
+        height: 0,
+        stroke: "black",
+        fill: "white",
+        selectable: true,
+        originX: "center"
+      });
+      canvas.add(triangle);
+
+      line = new fabric.Line(points, {
+        left: 100,
+        top: 100,
+        stroke: strokeColor,
+        strokeWidth: 1
+      });
+      canvas.add(line);
     });
 
     canvas.on("mouse:move", function(o) {
@@ -47,6 +89,17 @@ const App = () => {
       }
       if (tool === "rectangle") {
         rect.set({ left: origX, top: origY, width: pointer.x - origX, height: pointer.y - origY });
+      }
+
+      if (tool === "line") {
+        line.set({ x2: pointer.x, y2: pointer.y });
+        canvas.renderAll();
+      }
+      if (tool === "triangle") {
+        triangle.set({ width: Math.abs(origX - pointer.x), height: Math.abs(origY - pointer.y) });
+      }
+      if (tool === "selection") {
+        canvas.isDrawingMode = true;
       }
 
       canvas.renderAll();
@@ -73,7 +126,9 @@ const App = () => {
           type="radio"
           id="rectangle"
           checked={tool === "rectangle"}
-          onChange={() => setTool("rectangle")}
+          onChange={() => {
+            setTool("rectangle");
+          }}
         />
         <label htmlFor="rectangle">Rectangle</label>
         <input
@@ -101,9 +156,17 @@ const App = () => {
           Clear
         </button>
       </div>
-      <canvas id="canvas" width={window.innerWidth} height={window.innerHeight}>
-        Canvas
-      </canvas>
+      <div
+        style={{
+          position: "absolute",
+          top: "30px",
+          backgroundImage: "url(" + imageUrl + ")"
+        }}
+      >
+        <canvas id="canvas" width={window.innerWidth} height={window.innerHeight}>
+          Canvas
+        </canvas>
+      </div>
     </div>
   );
 };
