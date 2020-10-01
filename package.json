@@ -1,21 +1,17 @@
 {
-  "name": "excalidraw-tutorial",
+  "name": "ny-times",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "8.11.4",
-    "npm": "5.6.0"
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "fabric": "^4.1.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-owl-carousel": "^2.3.1",
     "react-scripts": "3.4.1",
-    "roughjs": "^4.3.1",
-    "start": "^5.1.0"
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,8 +34,13 @@
       "last 1 safari version"
     ]
   },
-  "prettier": {
-    "printWidth": 100,
-    "arrowParens": "avoid"
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "@testing-library/jest-dom": "^5.3.0",
+    "@types/jest": "24.0.11",
+    "@types/node": "10.14.3",
+    "@types/react": "16.8.10",
+    "@types/react-dom": "16.8.3"
   }
 }

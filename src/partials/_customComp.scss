@@ -1,0 +1,111 @@
+/*card CSS*/
+.CustomComponent {
+  &__componentcontent {
+    min-height: 650px;
+    &--whitecolor {
+      & .field-title {
+        color: $white !important;
+      }
+    }
+  }
+  &__cardlist {
+    position: relative;
+    padding-top: 85px;
+    background-size: cover;
+    background-image: url("../images/featured-bg.jpg");
+    height: 400px;
+    &--Parent {
+      width: 273.75px;
+      margin-right: 15px;
+    }
+  }
+}
+.section-title.feature:after {
+  background-color: $white !important;
+}
+
+.cardlist__card {
+  height: 410px;
+  border-radius: 20px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  &__list {
+    height: 400px;
+  }
+  &__info {
+    height: 185px;
+    padding: 18px 25px 5px 25px;
+    overflow: hidden;
+    &__title {
+      color: #000036;
+      font-size: 22px;
+      font-weight: bold;
+      height: 30px;
+      overflow: hidden;
+      &__description {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.5;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        &__subtitle {
+          font-size: 16px;
+          display: none;
+          &__subtitle > div {
+            position: relative;
+            line-height: 24px;
+            margin-bottom: 5px;
+            padding-left: 15px;
+          }
+        }
+      }
+    }
+  }
+  &__thumb {
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 6px dotted #000;
+    background-position: center center;
+    height: 205px;
+    -webkit-transition: height 0.4s;
+    -webkit-transition: height 0.4s;
+    transition: height 0.4s;
+    overflow: hidden;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.owl-dots {
+  text-align: center;
+  padding-top: 15px;
+  button.owl-dot {
+    background: #eee !important;
+    width: 50px;
+    height: 15px;
+    display: inline-block;
+    margin: 0 3px;
+    margin: 5px 7px;
+    -webkit-backface-visibility: visible;
+    -webkit-transition: opacity 200ms ease;
+    transition: opacity 200ms ease;
+    border-radius: 7.5px;
+    &.active {
+      background: -webkit-linear-gradient(343deg, #4f58de, #8bbcf0) !important;
+      background: linear-gradient(107deg, #4f58de, #8bbcf0) !important;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.owl-nav button {
+}

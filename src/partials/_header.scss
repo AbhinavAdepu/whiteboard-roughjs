@@ -1,0 +1,154 @@
+@import "_variables.scss";
+/*Block*/
+.menu {
+  background-color: $white;
+  box-shadow: 0px 0px 5px 0px $boxshadow;
+  width: 100%;
+  position: fixed;
+  height: 70px;
+  display: table;
+  z-index: 111;
+
+  /*Element*/
+  .menu__trigger {
+    float: left;
+    padding: 1.3rem 0;
+    width: 3em;
+    text-align: center;
+    color: #16414f;
+    font-size: 1.5rem;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    border-right: 1px solid #ccc;
+    i {
+      color: $primary;
+    }
+    /*Modifier*/
+    &--active {
+      background: $primary;
+      i {
+        color: $white;
+      }
+    }
+  }
+}
+
+/*Block*/
+.menu__dropdown {
+  padding: 1.6rem 0;
+  background: $primary;
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 11;
+  /*Element*/
+  .menu__row {
+    width: 90%;
+    font-size: 0;
+  }
+  /*Element*/
+  .menu__list {
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 1.2rem;
+  }
+  /*Element*/
+  .menu__link {
+    display: block;
+    text-decoration: none;
+    padding: 1.5rem;
+    color: $white;
+    font-weight: 500;
+    -webkit-transition: 0.3s color;
+    transition: 0.3s color;
+    /*Modifier*/
+    &:hover {
+      color: $black;
+    }
+  }
+  /*Element*/
+  .menu__col {
+    width: 100%;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .logoblock__centerlogo {
+    img {
+      width: 90%;
+      height: 70px;
+    }
+  }
+  .box {
+    position: relative;
+    .display-4 {
+      font-size: 60px;
+      padding: 1em 0em;
+    }
+  }
+}
+
+.logoblock__centerlogo {
+  img {
+    height: 70px;
+    max-width: 287px;
+  }
+}
+
+/*Block*/
+.logoblock {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: -webkit-calc(100%);
+  width: calc(100%);
+}
+.logoblock-right {
+  width: 52px !important;
+  background: url(https://icon-library.com/images/language-translation-icon/language-translation-icon-10.jpg);
+  width: 50px;
+  height: 46px;
+  background-size: 100% 100%;
+  cursor: pointer;
+  position: relative;
+  /* border-left: 1px solid #ccc; */
+  top: -8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.boxblock {
+  position: relative;
+  &__imgtitle {
+    position: absolute;
+    color: $white;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 10%;
+    letter-spacing: 3px;
+  }
+  &__imgresponsive {
+    position: relative;
+    z-index: -1;
+    padding-top: 75px;
+    width:100%;
+  }
+
+  &__displayText {
+    font-size: 5em;
+    padding: 0.4em 0em;
+  }
+}

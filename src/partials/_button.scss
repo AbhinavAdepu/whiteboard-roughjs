@@ -1,0 +1,53 @@
+@import "_variables.scss";
+/* Block */
+.btn {
+  text-decoration: none;
+  color: $white;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 12px 18px;
+
+  /* Element */
+  &__icon {
+    padding-right: 20px;
+    padding-left: 12px;
+    top: 3px;
+    position: relative;
+    margin-right: -10px; /* realign button text padding */
+    font-weight: 600;
+    background-image: url("../images/arrow.svg");
+    background-repeat: no-repeat;
+  }
+
+  /* Element */
+  &__text {
+    padding: 0 10px;
+    border-radius: 0 5px 5px 0;
+  }
+
+  /* Modifier */
+  &--big {
+    font-size: 28px;
+    padding: 10px;
+    font-weight: 400;
+  }
+
+  /* Modifier */
+  &--trans {
+    border: 2px solid $white;
+    border-radius: 30px;
+    color: $white;
+    background-color: transparent;
+  }
+
+  /* Modifier */
+  &--blue {
+    border-color: #0074d9;
+    color: white;
+    background-color: #0074d9;
+  }
+}
